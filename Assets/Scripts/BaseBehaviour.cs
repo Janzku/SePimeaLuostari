@@ -2,28 +2,8 @@
 
 public class BaseBehaviour : MonoBehaviour
 {
-
-    private Vector3 startingPosition;
-
-    public bool isPlayerLooking = false;
-
-    void Start()
+    public bool PlayerLooking(float angle = 10, bool ignoreHeight = true)
     {
-        startingPosition = transform.localPosition;
-        SetGazedAt(false);
-    }
-
-    public void SetGazedAt(bool gazedAt)
-    {
-        GetComponent<Renderer>().material.color = gazedAt ? Color.green : Color.red;
-        isPlayerLooking = gazedAt;
-    }
-
-    public bool PlayerLooking(float angle, bool ignoreHeight = true)
-    {
-        if (isPlayerLooking)
-            return true;
-
         var look = Camera.main.transform.forward;
         var pos = transform.position;
 
@@ -34,6 +14,8 @@ public class BaseBehaviour : MonoBehaviour
         }
 
         var ang = Vector3.Angle(Camera.main.transform.forward, transform.position);
+
+        GetComponent<Renderer>().material.color = ang < angle ? Color.green : Color.red;
 
         return ang < angle;
     }
