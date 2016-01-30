@@ -13,7 +13,7 @@ public class BaseBehaviour : MonoBehaviour
             pos.y = 0;
         }
 
-        var ang = Vector3.Angle(Camera.main.transform.forward, transform.position);
+        var ang = Vector3.Angle(look, pos);
 
         GetComponent<Renderer>().material.color = ang < angle ? Color.green : Color.red;
 
