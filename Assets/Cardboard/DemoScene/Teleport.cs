@@ -19,8 +19,6 @@ using System.Collections;
 public class Teleport : MonoBehaviour {
   private Vector3 startingPosition;
 
-    public Transform PlayerPosition = null;
-
   void Start() {
     startingPosition = transform.localPosition;
     SetGazedAt(false);
@@ -32,11 +30,6 @@ public class Teleport : MonoBehaviour {
       Application.Quit();
     }
   }
-
-    void Update()
-    {
-        transform.RotateAround(PlayerPosition.position, Vector3.up, Time.deltaTime * 50.0f);
-    }
 
   public void SetGazedAt(bool gazedAt) {
     GetComponent<Renderer>().material.color = gazedAt ? Color.green : Color.red;
