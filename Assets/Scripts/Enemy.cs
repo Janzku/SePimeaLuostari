@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : BaseBehaviour
 {
-    private int consecutiveLookedAtFrames = 0;
+    private int damage = 0;
     private bool lookedAt = false;
     private bool almostLookedAt = false;
 
@@ -30,14 +30,14 @@ public class Enemy : BaseBehaviour
         {
             if (PlayerLooking(5))
             {
-                consecutiveLookedAtFrames = consecutiveLookedAtFrames + 2;
+                damage = damage + 2;
                 lookedAt = true;
                 AS.pitch = Random.Range(0.5f, 2.5f);
                 AS.volume = Random.Range(0f, 1.0f);
             }
             else
             {
-                consecutiveLookedAtFrames++;
+                damage++;
                 almostLookedAt = true;
                 lookedAt = false;
                 //AS.pitch = Random.Range(0.5f, 2.5f);
@@ -46,7 +46,7 @@ public class Enemy : BaseBehaviour
         }
         else
         {
-            consecutiveLookedAtFrames = 0;
+            damage = 0;
             lookedAt = false;
             almostLookedAt = false;
             AS.pitch = 1;
@@ -70,7 +70,7 @@ public class Enemy : BaseBehaviour
 
     void DestroyCheck()
     {
-        if (consecutiveLookedAtFrames >= 180)
+        if (damage >= 180)
         {
             Destroy(this.gameObject);
         }
