@@ -19,13 +19,18 @@ public class Enemy : BaseBehaviour
         {
             consecutiveLookedAtFrames++;
             lookedAt = true;
-            AS.volume -= Time.deltaTime;
+            // AS.volume -= Time.deltaTime;
+            //if (AS.pitch >= 2.8)
+            //{
+                AS.pitch = 0.5f;
+            //}
         }
         else
         {
             consecutiveLookedAtFrames = 0;
             lookedAt = false;
-            AS.volume = 1;
+            // AS.volume = 1;
+            AS.pitch = 1;
         }
         DestroyCheck();
         Move();
