@@ -4,12 +4,12 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab = null;
-    private int spawnTimer = 0;
+    private int spawnTimer = 240;
 
     void Update()
     {
         // if(Input.GetKeyDown(KeyCode.S))
-        if (spawnTimer == 180)
+        if (spawnTimer == 300)
         {
             GameObject _go = Instantiate(EnemyPrefab);
             _go.transform.SetParent(this.gameObject.transform);

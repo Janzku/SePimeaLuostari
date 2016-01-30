@@ -6,17 +6,26 @@ public class Enemy : BaseBehaviour
     private int consecutiveLookedAtFrames = 0;
     private bool lookedAt = false;
 
+    private CardboardAudioSource AS;
+
+    void Start()
+    {
+        AS = GetComponent<CardboardAudioSource>();
+    }
+
     void Update()
     {
         if (PlayerLooking(10))
         {
             consecutiveLookedAtFrames++;
             lookedAt = true;
+            AS.volume -= Time.deltaTime;
         }
         else
         {
             consecutiveLookedAtFrames = 0;
             lookedAt = false;
+            AS.volume = 1;
         }
         DestroyCheck();
         Move();
@@ -27,7 +36,7 @@ public class Enemy : BaseBehaviour
     {
         if (transform.position.x <= 0.5f && transform.position.x >= -0.5f || transform.position.z <= 0.5f && transform.position.z >= -0.5f)
         {
-            Debug.Log("DOD");
+            Debug.LogError("DOD");
             Destroy(this.gameObject);
         }
     }
