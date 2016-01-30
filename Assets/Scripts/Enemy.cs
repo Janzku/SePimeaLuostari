@@ -6,6 +6,7 @@ public class Enemy : BaseBehaviour
     private int damage = 0;
     private bool lookedAt = false;
     private bool almostLookedAt = false;
+    private bool volumeFadeCompleted = false;
 
     private CardboardAudioSource AS;
 
@@ -50,7 +51,10 @@ public class Enemy : BaseBehaviour
             lookedAt = false;
             almostLookedAt = false;
             AS.pitch = 1;
-            AS.volume = 1; // should maybe be ignored if volume ramp up is still going...
+            if (volumeFadeCompleted)
+            {
+                AS.volume = 1;
+            }
         }
     }
 
@@ -98,9 +102,10 @@ public class Enemy : BaseBehaviour
         {
             float volumeStep = 0.0125f;
             float newVolume = AS.volume + volumeStep;
-            if (newVolume > 1)
+            if (newVolume >= 1)
             {
                 newVolume = 1.0f;
+                volumeFadeCompleted = true;
             }
             AS.volume = newVolume;
         }

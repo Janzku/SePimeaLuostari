@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Waldo : BaseBehaviour
 {
-    public bool waldoFound = false;
     private CardboardAudioSource AS;
 
     void Start()
@@ -23,10 +22,12 @@ public class Waldo : BaseBehaviour
         {
             var look = Camera.main.transform.forward;
             var pos = transform.position;
+            look.y = 0;
+            pos.y = 0;
             var ang = Vector3.Angle(look, pos);
             float volumeMultiplier = 60 - ang;
             AS.volume = 1.0f / 60.0f * volumeMultiplier;
-            if (PlayerLooking(3))
+            if (PlayerLooking(4))
             {
                 MakeProgress();
             }
