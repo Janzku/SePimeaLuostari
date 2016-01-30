@@ -5,7 +5,7 @@ public class BaseBehaviour : MonoBehaviour
 
     private Vector3 startingPosition;
 
-    private bool isPlayerLooking = false;
+    public bool isPlayerLooking = false;
 
     void Start()
     {
