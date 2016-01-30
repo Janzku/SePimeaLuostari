@@ -15,34 +15,34 @@ public class Enemy : BaseBehaviour
 
     void Update()
     {
-        if (PlayerLooking(10))
+        if (PlayerLooking(20))
         {
             consecutiveLookedAtFrames++;
             lookedAt = true;
-            // AS.volume -= Time.deltaTime;
-            //if (AS.pitch >= 2.8)
-            //{
-                AS.pitch = 0.5f;
-            //}
+            AS.pitch = Random.Range(0.5f, 2.5f);
         }
         else
         {
             consecutiveLookedAtFrames = 0;
             lookedAt = false;
-            // AS.volume = 1;
             AS.pitch = 1;
         }
         DestroyCheck();
         Move();
-        KillCheck();
+        PlayerKillCheck();
     }
 
-    void KillCheck()
+    void PlayerKillCheck()
     {
-        if (transform.position.x <= 0.5f && transform.position.x >= -0.5f || transform.position.z <= 0.5f && transform.position.z >= -0.5f)
+        if (transform.position.x <= 0.5f && transform.position.x >= -0.5f)
         {
-            Debug.LogError("DOD");
-            Destroy(this.gameObject);
+            if (transform.position.z <= 0.5f && transform.position.z >= -0.5f)
+            {
+                Debug.Log(transform.position.x);
+                Debug.Log(transform.position.z);
+                Debug.LogError("DOD");
+                Destroy(this.gameObject);
+            }
         }
     }
 

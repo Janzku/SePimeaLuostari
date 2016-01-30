@@ -5,6 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab = null;
     private int spawnTimer = 240;
+    private int spawnDistance = 5;
 
     void Update()
     {
@@ -13,7 +14,8 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject _go = Instantiate(EnemyPrefab);
             _go.transform.SetParent(this.gameObject.transform);
-            _go.transform.position = new Vector3(Random.Range(-15, 15), 0, 3);
+            _go.transform.position = new Vector3(0 , 0, spawnDistance);
+            _go.transform.RotateAround(Vector3.zero, Vector3.up, Random.Range(-90.0f, 90.0f));
             _go.transform.LookAt(new Vector3(0, _go.transform.position.y, 0));
 
             spawnTimer = 0;
