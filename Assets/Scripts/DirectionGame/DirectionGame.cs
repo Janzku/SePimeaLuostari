@@ -6,8 +6,11 @@ public class DirectionGame : MonoBehaviour
     public int Directions;
     public int completed;
     public int progress;
+    public int curSound;
     public string[] directionList;
     public string[] activatedDirections;
+    public bool start;
+    CardboardAudioSource[] soundList;
     public GameObject UpDirection;
     public GameObject DownDirection;
     public GameObject LeftDirection;
@@ -19,6 +22,8 @@ public class DirectionGame : MonoBehaviour
     direction rightD;
     direction centerD;
     private bool fail = false;
+    
+
 	// Use this for initialization
 	void Start () 
     {
@@ -30,8 +35,30 @@ public class DirectionGame : MonoBehaviour
         centerD = CenterObject.GetComponent<direction>();
 
         activatedDirections = new string[completed+1];
-       
-       
+        soundList = new CardboardAudioSource[directionList.Length];
+        for (int l = 0; l < directionList.Length; l++)
+        {
+            switch (directionList[l])
+            {
+                case "Up":
+                    soundList[l] = UpDirection.GetComponent<CardboardAudioSource>();
+
+
+                    break;
+                case "Down":
+                    soundList[l] = DownDirection.GetComponent<CardboardAudioSource>();
+                    break;
+                case "Left":
+                    soundList[l] = LeftDirection.GetComponent<CardboardAudioSource>(); ;
+                    break;
+                case "Right":
+                    soundList[l] = RightDirection.GetComponent<CardboardAudioSource>(); ;
+                    break;
+
+            }
+        }
+			 
+		
 
 	
 	}
@@ -98,9 +125,31 @@ public class DirectionGame : MonoBehaviour
  
            }
         }
+        soundList[curSound].loop = false;
+        soundList[curSound].Play();
+        start = true;
 
 
  
+    }
+
+    void HintSounds()
+    {
+        
+ 
+        if(soundList[curSound].isPlaying == false)
+        {
+            soundList[curSound].loop = true;
+            curSound++;
+            if(curSound >= activatedDirections.Length)
+            {
+                return;
+            }
+
+            soundList[curSound].loop = false;
+            soundList[curSound].Play();
+        }
+
     }
 
    void directionCheck(string dName)
@@ -241,6 +290,11 @@ public class DirectionGame : MonoBehaviour
 
    void theDirectionGame()
    {
+
+       if (start)
+       {
+           HintSounds();
+       }
        directionCheck("Up");
        directionCheck("Down");
        directionCheck("Left");
