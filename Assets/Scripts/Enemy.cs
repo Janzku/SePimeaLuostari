@@ -7,8 +7,16 @@ public class Enemy : BaseBehaviour
     private bool lookedAt = false;
     private bool almostLookedAt = false;
     private bool volumeFadeCompleted = false;
+    private bool dying = false;
+    private bool attacking = false;
+    private bool stunned = false;
 
     private CardboardAudioSource AS;
+
+    public AudioClip MoveSound = null;
+    public AudioClip DeathSound = null;
+    public AudioClip AttackSound = null;
+    public AudioClip StunnedSound = null;
 
     void Start()
     {
@@ -18,11 +26,22 @@ public class Enemy : BaseBehaviour
 
     void Update()
     {
-        PlayerLookCheck();
-        FadeInVolume();
-        DestroyCheck();
-        Move();
-        PlayerKillCheck();
+        if (dying)
+        {
+            CheckIfDead();
+        }
+        else if (attacking)
+        {
+            CheckAttackEnd();
+        }
+        else
+        {
+            FadeInVolume();
+            PlayerLookCheck();
+            DestroyCheck();
+            Move();
+            PlayerKillCheck();
+        }
     }
 
     void PlayerLookCheck()
@@ -33,8 +52,8 @@ public class Enemy : BaseBehaviour
             {
                 damage = damage + 2;
                 lookedAt = true;
-                AS.pitch = Random.Range(0.5f, 2.5f);
-                AS.volume = Random.Range(0f, 1.0f);
+                //AS.pitch = Random.Range(0.5f, 2.5f);
+                //AS.volume = Random.Range(0f, 1.0f);
             }
             else
             {
@@ -42,8 +61,13 @@ public class Enemy : BaseBehaviour
                 almostLookedAt = true;
                 lookedAt = false;
                 //AS.pitch = Random.Range(0.5f, 2.5f);
-                AS.volume = Random.Range(0f, 1.0f);
+                //AS.volume = Random.Range(0f, 1.0f);
             }
+            if (!stunned)
+            {
+                SwapSound(StunnedSound);
+            }
+            stunned = true;
         }
         else
         {
@@ -55,6 +79,11 @@ public class Enemy : BaseBehaviour
             {
                 AS.volume = 1;
             }
+            if (stunned) // AS.clip != MoveSound caused stackoverflow
+            {
+                SwapSound(MoveSound);
+            }
+            stunned = false;
         }
     }
 
@@ -64,10 +93,7 @@ public class Enemy : BaseBehaviour
         {
             if (transform.position.z <= 0.5f && transform.position.z >= -0.5f)
             {
-                Debug.Log(transform.position.x);
-                Debug.Log(transform.position.z);
-                Debug.LogError("DOD");
-                Destroy(this.gameObject);
+                PlayerCaught();
             }
         }
     }
@@ -76,7 +102,7 @@ public class Enemy : BaseBehaviour
     {
         if (damage >= 180)
         {
-            Destroy(this.gameObject);
+            StartDying();
         }
     }
 
@@ -86,7 +112,7 @@ public class Enemy : BaseBehaviour
         {
             transform.Translate(Vector3.back * Time.deltaTime);
         }
-        else if (almostLookedAt)
+        else if (stunned)
         {
             // doesn't move
         }
@@ -109,5 +135,59 @@ public class Enemy : BaseBehaviour
             }
             AS.volume = newVolume;
         }
+    }
+
+    void PlayerCaught()
+    {
+        attacking = true;
+        AS.Stop();
+        AS.clip = AttackSound;
+        AS.volume = 1;
+        AS.pitch = 1;
+        AS.Play();
+        AS.loop = false;
+    }
+
+    void StartDying()
+    {
+        dying = true;
+        AS.Stop();
+        AS.clip = DeathSound;
+        AS.volume = 1;
+        AS.pitch = 1;
+        AS.Play();
+        AS.loop = false;
+    }
+
+    void CheckIfDead()
+    {
+        if (!AS.isPlaying)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void CheckAttackEnd()
+    {
+        if (!AS.isPlaying)
+        {
+            FailTrial();
+        }
+    }
+
+    void FailTrial()
+    {
+        Debug.Log("Player is dead.");
+        Destroy(this.gameObject);
+        // go to game over scene
+    }
+
+    void SwapSound(AudioClip sound)
+    {
+        AS.Stop();
+        AS.clip = sound;
+        AS.volume = 1;
+        AS.pitch = 1;
+        AS.Play();
     }
 }
