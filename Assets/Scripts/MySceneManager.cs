@@ -12,6 +12,8 @@ public class MySceneManager : MonoBehaviour
 
 	void Awake ()
     {
+        _instance = this;
+
         m_trialAmount = (SceneManager.sceneCount - 4);
 	}
 
