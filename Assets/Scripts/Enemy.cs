@@ -10,10 +10,12 @@ public class Enemy : BaseBehaviour
     private bool dying = false;
     private bool attacking = false;
     private bool stunned = false;
+    private int stunPitchDirection = 1;
 
     private CardboardAudioSource AS;
 
-    public AudioClip MoveSound = null;
+    public AudioClip MoveSound1 = null;
+    public AudioClip MoveSound2 = null;
     public AudioClip DeathSound = null;
     public AudioClip AttackSound = null;
     public AudioClip StunnedSound = null;
@@ -22,6 +24,7 @@ public class Enemy : BaseBehaviour
     {
         AS = GetComponent<CardboardAudioSource>();
         AS.volume = 0;
+        SwapSound(GetRandomMoveSound());
     }
 
     void Update()
@@ -68,6 +71,7 @@ public class Enemy : BaseBehaviour
                 SwapSound(StunnedSound);
             }
             stunned = true;
+            AdjustStunPitch();
         }
         else
         {
@@ -81,7 +85,7 @@ public class Enemy : BaseBehaviour
             }
             if (stunned) // AS.clip != MoveSound caused stackoverflow
             {
-                SwapSound(MoveSound);
+                SwapSound(GetRandomMoveSound());
             }
             stunned = false;
         }
@@ -182,12 +186,56 @@ public class Enemy : BaseBehaviour
         // go to game over scene
     }
 
-    void SwapSound(AudioClip sound)
+    void SwapSound(AudioClip sound, float pitch = 1)
     {
         AS.Stop();
         AS.clip = sound;
         AS.volume = 1;
-        AS.pitch = 1;
+        AS.pitch = pitch;
         AS.Play();
+    }
+
+    AudioClip GetRandomMoveSound()
+    {
+        int rand = Random.Range(1, 3);
+        if (rand == 1)
+        {
+            return MoveSound1;
+        }
+        else
+        {
+            return MoveSound2;
+        }
+    }
+
+    void AdjustStunPitch()
+    {
+        //Bounces pitch up and down, speed depends on accuracy
+        if (AS.pitch <= 1.5f)
+        {
+            stunPitchDirection = 1;
+        }
+        else if (AS.pitch >= 2.5f)
+        {
+            stunPitchDirection = -1;
+        }
+        var look = Camera.main.transform.forward;
+        var pos = transform.position;
+        look.y = 0;
+        pos.y = 0;
+        var ang = Vector3.Angle(look, pos);
+        float extraPitchMultiplier = 20 - ang;
+        float extraPitch = extraPitchMultiplier * 0.01f;
+        //Debug.Log(extraPitch);
+        AS.pitch = AS.pitch + extraPitch * stunPitchDirection;
+
+        //initial version: changes pitch depending on accuracy
+        //var look = Camera.main.transform.forward;
+        //var pos = transform.position;
+        //look.y = 0;
+        //pos.y = 0;
+        //var ang = Vector3.Angle(look, pos);
+        //float extraPitchMultiplier = 20 - ang;
+        //AS.pitch = 1.0f + 0.10f * extraPitchMultiplier;
     }
 }

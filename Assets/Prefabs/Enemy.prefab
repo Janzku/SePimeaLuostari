@@ -106,7 +106,7 @@ MonoBehaviour:
   occlusionEnabled: 0
   playOnAwake: 1
   rolloffMode: 0
-  sourceClip: {fileID: 8300000, guid: 580c1230165b44be4922e61f9d4e2613, type: 3}
+  sourceClip: {fileID: 8300000, guid: e2f64cc3efbcce24cbdc818bb8b73752, type: 3}
   sourceLoop: 1
   sourceMute: 0
   sourcePitch: 1
@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4976822293107f45b1fca6a50bf586d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSound: {fileID: 8300000, guid: 891357f047551e4438d0b75066a9a16c, type: 3}
-  DeathSound: {fileID: 8300000, guid: a617fbfd72a229c439e83ba2d9c46ba8, type: 3}
+  MoveSound1: {fileID: 8300000, guid: 6c80ccffc06be5a498691a6b6c496f6b, type: 3}
+  MoveSound2: {fileID: 8300000, guid: 7dc6adf16fd71e74b9b2eafa73e2e110, type: 3}
+  DeathSound: {fileID: 8300000, guid: 0e6f20494052c984a85191a0f4936f78, type: 3}
   AttackSound: {fileID: 8300000, guid: 6b3d9052a821bbf40bee0418025da685, type: 3}
   StunnedSound: {fileID: 8300000, guid: 8a40cd4ce1d409a4bbf34e68bded6406, type: 3}
 --- !u!1001 &100100000
@@ -143,7 +144,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: DeathSound
       value: 
-      objectReference: {fileID: 8300000, guid: a617fbfd72a229c439e83ba2d9c46ba8, type: 3}
+      objectReference: {fileID: 8300000, guid: 0e6f20494052c984a85191a0f4936f78, type: 3}
     - target: {fileID: 0}
       propertyPath: AttackSound
       value: 
@@ -156,6 +157,22 @@ Prefab:
       propertyPath: MoveSound
       value: 
       objectReference: {fileID: 8300000, guid: 891357f047551e4438d0b75066a9a16c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: MoveSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c80ccffc06be5a498691a6b6c496f6b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: MoveSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 7dc6adf16fd71e74b9b2eafa73e2e110, type: 3}
+    - target: {fileID: 0}
+      propertyPath: MoveSound3
+      value: 
+      objectReference: {fileID: 8300000, guid: e2f64cc3efbcce24cbdc818bb8b73752, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sourceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e2f64cc3efbcce24cbdc818bb8b73752, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 159778}
