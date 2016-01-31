@@ -9,6 +9,7 @@ public class TrialInstructor : MonoBehaviour {
     public AudioClip LetsStart = null;
     private bool introStarted = false;
     private bool letsStartStarted = false;
+    private bool trialIntroFinished = false;
     //public bool introFinished = true;
 
 	// Use this for initialization
@@ -21,39 +22,40 @@ public class TrialInstructor : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q)) {
             DebugSkip();
         }
-	    if (!AS.isPlaying)
+	    if (!AS.isPlaying && !trialIntroFinished)
         {
-            Debug.Log("asd");
             if (letsStartStarted)
             {
                 StartTrial();
             }
-            if (introStarted)
+            else if (introStarted)
             {
                 StartLetsStart();
             }
             else
             {
-                // "lets get started" finished, start trial intro
+                // "psst" finished, start trial intro
                 SwapSound(IntroSpeech);
                 introStarted = true;
             }
-
         }
 	}
     void SwapSound(AudioClip sound, float pitch = 1.0f)
     {
+        Debug.Log("asd");
         AS.Stop();
         AS.clip = sound;
         AS.volume = 1;
         AS.pitch = pitch;
+        AS.loop = false;
         AS.Play();
     }
 
     void StartTrial()
     {
         Trial.enabled = true;
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        trialIntroFinished = true;
     }
 
     void StartLetsStart() {
