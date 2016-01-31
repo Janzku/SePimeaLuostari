@@ -40,7 +40,7 @@ public class WaldoSpawner : MonoBehaviour
 
     void FinishTrial(bool debugskip = false)
     {
-        if (waldoCounter >= 6 || debugskip) // should be 1 more than actual found number
+        if (waldoCounter >= 5 || debugskip) // should be 1 more than actual found number
         {
             // move to next trial
             //Debug.Log("Success. Waldos:");

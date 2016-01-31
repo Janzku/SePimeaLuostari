@@ -5,12 +5,13 @@ public class Enemy : BaseBehaviour
 {
     private int damage = 0;
     private bool lookedAt = false;
-    private bool almostLookedAt = false;
     private bool volumeFadeCompleted = false;
     private bool dying = false;
     private bool attacking = false;
     private bool stunned = false;
     private int stunPitchDirection = 1;
+    private float lookingMargin = 30;
+    private float preciseLookingMargin = 10;
 
     private CardboardAudioSource AS;
 
@@ -49,22 +50,17 @@ public class Enemy : BaseBehaviour
 
     void PlayerLookCheck()
     {
-        if (PlayerLooking(20))
+        if (PlayerLooking(lookingMargin))
         {
-            if (PlayerLooking(5))
+            if (PlayerLooking(preciseLookingMargin))
             {
                 damage = damage + 2;
                 lookedAt = true;
-                //AS.pitch = Random.Range(0.5f, 2.5f);
-                //AS.volume = Random.Range(0f, 1.0f);
             }
             else
             {
                 damage++;
-                almostLookedAt = true;
                 lookedAt = false;
-                //AS.pitch = Random.Range(0.5f, 2.5f);
-                //AS.volume = Random.Range(0f, 1.0f);
             }
             if (!stunned)
             {
@@ -77,7 +73,6 @@ public class Enemy : BaseBehaviour
         {
             damage = 0;
             lookedAt = false;
-            almostLookedAt = false;
             AS.pitch = 1;
             if (volumeFadeCompleted)
             {
@@ -225,7 +220,7 @@ public class Enemy : BaseBehaviour
         look.y = 0;
         pos.y = 0;
         var ang = Vector3.Angle(look, pos);
-        float extraPitchMultiplier = 20 - ang;
+        float extraPitchMultiplier = lookingMargin - ang;
         float extraPitch = extraPitchMultiplier * 0.01f;
         //Debug.Log(extraPitch);
         AS.pitch = AS.pitch + extraPitch * stunPitchDirection;
