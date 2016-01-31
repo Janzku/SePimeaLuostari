@@ -14,7 +14,7 @@ public class MySceneManager : MonoBehaviour
     {
         _instance = this;
 
-        m_trialAmount = (SceneManager.sceneCount - 4);
+        m_trialAmount = (SceneManager.sceneCountInBuildSettings - 4);
 	}
 
 
