@@ -4,6 +4,9 @@ using System.Collections;
 public class Waldo : BaseBehaviour
 {
     private CardboardAudioSource AS;
+    private bool found = false;
+
+    public AudioClip FoundSound = null;
 
     void Start()
     {
@@ -13,7 +16,17 @@ public class Waldo : BaseBehaviour
 
     void Update()
     {
-        PlayerLookCheck();
+        if (found)
+        {
+            if (!AS.isPlaying)
+            {
+                NextWaldo();
+            }
+        }
+        else
+        {
+            PlayerLookCheck();
+        }
     }
 
     void PlayerLookCheck()
@@ -55,12 +68,27 @@ public class Waldo : BaseBehaviour
 
     void FoundWaldo()
     {
-        Debug.Log("you found waldo!");
+        found = true;
+        SwapSound(FoundSound);
+        AS.loop = false;
+    }
+
+    void NextWaldo()
+    {
         Destroy(this.gameObject);
     }
 
     void OnDestroy()
     {
 
+    }
+
+    void SwapSound(AudioClip sound)
+    {
+        AS.Stop();
+        AS.clip = sound;
+        AS.volume = 1;
+        AS.pitch = 1;
+        AS.Play();
     }
 }

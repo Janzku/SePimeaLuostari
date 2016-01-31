@@ -7,6 +7,12 @@ public class EnemySpawner : MonoBehaviour
     private int spawnTimer = 240;
     private int spawnDistance = 4;
     private float randomDirection;
+    private float sceneStartTime;
+
+    void Start()
+    {
+        sceneStartTime = Time.realtimeSinceStartup;
+    }
 
     void Update()
     {
@@ -26,5 +32,14 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnTimer++;
         }
+        if ((sceneStartTime + 30f) <= Time.realtimeSinceStartup)
+        {
+            FinishTrial();
+        }
+    }
+
+    void FinishTrial()
+    {
+        // move to next trial
     }
 }
