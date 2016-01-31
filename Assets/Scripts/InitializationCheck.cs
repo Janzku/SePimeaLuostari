@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InitializationCheck : MonoBehaviour
 {
-    private static bool firstInit = false;
+    public static bool firstInit = false;
 
 	// Use this for initialization
 	void Awake ()
@@ -15,7 +15,7 @@ public class InitializationCheck : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         }
 	}
 	

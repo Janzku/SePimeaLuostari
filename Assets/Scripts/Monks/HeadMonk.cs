@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class HeadMonk : BaseBehaviour
 {
@@ -33,6 +34,8 @@ public class HeadMonk : BaseBehaviour
     {
         CAS = GetComponent<CardboardAudioSource>();
 
+        Player = Camera.main.gameObject;
+        
         CAS.Stop();
         CAS.clip = IntroClips[m_curClipIndex];
         CAS.Play();
@@ -181,7 +184,7 @@ public class HeadMonk : BaseBehaviour
             Debug.Log("Praise the heavens");
             if(m_introIsOver == false)
             {
-                m_playCredits = true;
+                m_playerActionTriggered = true;
                 CAS.Stop();
                 CAS.clip = EarlyActionClips[1];
                 CAS.Play();
@@ -204,6 +207,8 @@ public class HeadMonk : BaseBehaviour
     {
         if(CAS.isPlaying == false)
         {
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             Destroy(this.gameObject); // Load trial scene here instead.
         }
     }
@@ -212,16 +217,17 @@ public class HeadMonk : BaseBehaviour
     {
         if(CAS.isPlaying == false)
         {
-            if (CAS.clip.name == Credits.name)
-            {
-                m_playerActionTriggered = false;
-                m_playCredits = false;
-            }
-            else
+            if (m_playerActionTriggered)
             {
                 CAS.Stop();
                 CAS.clip = Credits;
                 CAS.Play();
+                m_playerActionTriggered = false;
+                m_resumePreach = true;
+            }
+            else
+            {
+                m_playCredits = false;
             }
         }
     }
