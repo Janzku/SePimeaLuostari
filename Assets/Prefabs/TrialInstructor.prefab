@@ -95,7 +95,7 @@ MonoBehaviour:
   occlusionEnabled: 0
   playOnAwake: 1
   rolloffMode: 0
-  sourceClip: {fileID: 8300000, guid: c8931a5eb03066148b85b7d02d8c05c5, type: 3}
+  sourceClip: {fileID: 8300000, guid: f4766e7a6897d204881da4d15a59fb1d, type: 3}
   sourceLoop: 0
   sourceMute: 0
   sourcePitch: 1
@@ -114,8 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336b7efee01c8394aa69283cd6812335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Trial: {fileID: 0}
   IntroSpeech: {fileID: 0}
-  introStarted: 0
+  LetsStart: {fileID: 8300000, guid: c8931a5eb03066148b85b7d02d8c05c5, type: 3}
 --- !u!114 &11493528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +141,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sourceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4766e7a6897d204881da4d15a59fb1d, type: 3}
+    - target: {fileID: 0}
+      propertyPath: LetsStart
       value: 
       objectReference: {fileID: 8300000, guid: c8931a5eb03066148b85b7d02d8c05c5, type: 3}
     m_RemovedComponents: []

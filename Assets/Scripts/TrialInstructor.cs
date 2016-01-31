@@ -6,7 +6,9 @@ public class TrialInstructor : MonoBehaviour {
     public MonoBehaviour Trial = null;
     private CardboardAudioSource AS;
     public AudioClip IntroSpeech = null;
+    public AudioClip LetsStart = null;
     private bool introStarted = false;
+    private bool letsStartStarted = false;
     //public bool introFinished = true;
 
 	// Use this for initialization
@@ -19,12 +21,14 @@ public class TrialInstructor : MonoBehaviour {
 	    if (!AS.isPlaying)
         {
             Debug.Log("asd");
+            if (letsStartStarted)
+            {
+                StartTrial();
+            }
             if (introStarted)
             {
-                // start trial
-                //introFinished = true;
-                Trial.enabled = true;
-                Destroy(this.gameObject);
+                SwapSound(LetsStart);
+                letsStartStarted = true;
             }
             else
             {
@@ -42,5 +46,11 @@ public class TrialInstructor : MonoBehaviour {
         AS.volume = 1;
         AS.pitch = pitch;
         AS.Play();
+    }
+
+    void StartTrial()
+    {
+        Trial.enabled = true;
+        Destroy(this.gameObject);
     }
 }
