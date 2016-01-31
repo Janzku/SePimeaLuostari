@@ -18,6 +18,9 @@ public class TrialInstructor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            DebugSkip();
+        }
 	    if (!AS.isPlaying)
         {
             Debug.Log("asd");
@@ -27,8 +30,7 @@ public class TrialInstructor : MonoBehaviour {
             }
             if (introStarted)
             {
-                SwapSound(LetsStart);
-                letsStartStarted = true;
+                StartLetsStart();
             }
             else
             {
@@ -52,5 +54,15 @@ public class TrialInstructor : MonoBehaviour {
     {
         Trial.enabled = true;
         Destroy(this.gameObject);
+    }
+
+    void StartLetsStart() {
+        SwapSound(LetsStart);
+        letsStartStarted = true;
+    }
+
+    void DebugSkip()
+    {
+        StartLetsStart();
     }
 }

@@ -3,14 +3,17 @@ using System.Collections;
 
 public class Waldo : BaseBehaviour
 {
-        private CardboardAudioSource AS; private bool found = false;
+    private CardboardAudioSource AS;
+    private bool found = false;
+    private float lookingMargin = 80;
+    private float preciseLookingMargin = 10;
 
-        public AudioClip FoundSound = null;
+    public AudioClip FoundSound = null;
 
-        void Start()
-        {
+    void Start()
+    {
         AS = GetComponent<CardboardAudioSource>();
-        AS.volume = 0;
+        AS.volume = 0.05f;
     }
 
     void Update()
@@ -30,16 +33,16 @@ public class Waldo : BaseBehaviour
 
     void PlayerLookCheck()
     {
-        if (PlayerLooking(60))
+        if (PlayerLooking(lookingMargin))
         {
             var look = Camera.main.transform.forward;
             var pos = transform.position;
             look.y = 0;
             pos.y = 0;
             var ang = Vector3.Angle(look, pos);
-            float volumeMultiplier = 60 - ang;
-            AS.volume = 1.0f / 60.0f * volumeMultiplier;
-            if (PlayerLooking(4))
+            float volumeMultiplier = lookingMargin - ang;
+            AS.volume = 0.05f + 0.95f / lookingMargin * volumeMultiplier;
+            if (PlayerLooking(preciseLookingMargin))
             {
                 MakeProgress();
             }
