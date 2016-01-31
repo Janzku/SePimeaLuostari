@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39aa2235bf1b8444bace521978ccecef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 2101719539}
+  Player: {fileID: 0}
   IntroClips:
   - {fileID: 8300000, guid: 58eb0f1f20a37484795eb19d5e0449da, type: 3}
   - {fileID: 8300000, guid: 9b8ccb11f37e92547846c67861e21726, type: 3}
@@ -261,7 +261,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1b6d2fe2e988dbe49ad054102ece4974, type: 3}
   - {fileID: 8300000, guid: 20d4e793c438d9f4a97ab82524e87155, type: 3}
   - {fileID: 8300000, guid: e1efb4a69c4a2a144b13a1d650c33d4d, type: 3}
-  Credits: {fileID: 8300000, guid: 300b6d520215ce44c86a15108f11a637, type: 3}
+  Credits: {fileID: 8300000, guid: c838eaaa8ef444545bc567f5747be98f, type: 3}
 --- !u!1 &755645996
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1253647603}
-  m_RootOrder: 4
+  m_RootOrder: 0
 --- !u!114 &1379850544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +431,3 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d5cc856062f3fc40b748e64ef180d56, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2101719539 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 136206, guid: 4d5cc856062f3fc40b748e64ef180d56, type: 2}
-  m_PrefabInternal: {fileID: 1486988218}

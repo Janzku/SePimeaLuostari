@@ -6,8 +6,6 @@ public class HeadMonk : BaseBehaviour
 {
     private float m_notLookingTimer = 1.5f;
 
-    private bool m_continuePreach = true;
-
     private int m_moveDirection = 1;
 
     public GameObject Player = null;
