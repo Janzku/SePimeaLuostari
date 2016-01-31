@@ -7,14 +7,14 @@ public class MySceneManager : MonoBehaviour
     private static MySceneManager _instance = null;
     public static MySceneManager Instance { get { return _instance; } }
 
-    int m_trialAmount = 3;
+    int m_trialAmount = 2;
     int m_trialsLoaded = 0;
 
 	void Awake ()
     {
         _instance = this;
 
-        m_trialAmount = (SceneManager.sceneCountInBuildSettings - 4);
+        //m_trialAmount = (SceneManager.sceneCountInBuildSettings - 4); // for automatic trial count for future expansion
 	}
 
 

@@ -3,13 +3,12 @@ using System.Collections;
 
 public class Waldo : BaseBehaviour
 {
-    private CardboardAudioSource AS;
-    private bool found = false;
+        private CardboardAudioSource AS; private bool found = false;
 
-    public AudioClip FoundSound = null;
+        public AudioClip FoundSound = null;
 
-    void Start()
-    {
+        void Start()
+        {
         AS = GetComponent<CardboardAudioSource>();
         AS.volume = 0;
     }

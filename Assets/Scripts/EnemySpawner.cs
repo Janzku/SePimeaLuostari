@@ -17,6 +17,9 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            DebugSkip();
+        }
         if (spawnTimer >= framesToNextSpawn)
         {
             GameObject _go = Instantiate(EnemyPrefab);
@@ -43,5 +46,10 @@ public class EnemySpawner : MonoBehaviour
     {
         Debug.Log("survived.");
         MySceneManager.NextTrial();
+    }
+
+    void DebugSkip()
+    {
+        FinishTrial();
     }
 }

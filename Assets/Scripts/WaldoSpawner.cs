@@ -16,6 +16,9 @@ public class WaldoSpawner : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            DebugSkip();
+        }
         if (m_waldo == null)
         {
             float randomDirection = Random.Range(-180.0f, 180.0f);
@@ -35,9 +38,9 @@ public class WaldoSpawner : MonoBehaviour
 
 
 
-    void FinishTrial()
+    void FinishTrial(bool debugskip = false)
     {
-        if (waldoCounter >= 6) // should be 1 more than actual found number
+        if (waldoCounter >= 6 || debugskip) // should be 1 more than actual found number
         {
             // move to next trial
             //Debug.Log("Success. Waldos:");
@@ -51,5 +54,9 @@ public class WaldoSpawner : MonoBehaviour
             //Debug.Log(waldoCounter);
             MySceneManager.LostGameScene();
         }
+    }
+
+    void DebugSkip() {
+        FinishTrial(true);
     }
 }
