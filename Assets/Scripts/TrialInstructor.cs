@@ -25,7 +25,7 @@ public class TrialInstructor : MonoBehaviour {
             {
                 StartTrial();
             }
-            if (introStarted)
+            else if (introStarted)
             {
                 SwapSound(LetsStart);
                 letsStartStarted = true;
