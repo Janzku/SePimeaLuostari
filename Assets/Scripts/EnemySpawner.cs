@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject _go = Instantiate(EnemyPrefab);
             _go.transform.SetParent(this.gameObject.transform);
             _go.transform.position = new Vector3(0, 0, spawnDistance);
-            randomDirection = Random.Range(-90.0f, 90.0f);
+            randomDirection = Random.Range(-180.0f, 180.0f); // can spawn in any direction...but right behind is a problem, sounds just like front
             _go.transform.RotateAround(Vector3.zero, Vector3.up, randomDirection);
             _go.transform.LookAt(new Vector3(0, _go.transform.position.y, 0));
 
