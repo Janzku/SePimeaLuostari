@@ -5,14 +5,43 @@ public class DirectionGame : MonoBehaviour
 {
     public int Directions;
     public int completed;
+    public int progress;
     public string[] directionList;
-
+    public string[] activatedDirections;
+    public GameObject UpDirection;
+    public GameObject DownDirection;
+    public GameObject LeftDirection;
+    public GameObject RightDirection;
+    public GameObject CenterObject;
+    direction downD;
+    direction upD;
+    direction leftD;
+    direction rightD;
+    direction centerD;
+    private bool fail = false;
 	// Use this for initialization
 	void Start () 
     {
         newDirectionList();
+        downD = DownDirection.GetComponent<direction>();
+        upD =UpDirection.GetComponent<direction>();
+        leftD = LeftDirection.GetComponent<direction>();
+        rightD = RightDirection.GetComponent<direction>();
+        centerD = CenterObject.GetComponent<direction>();
+
+        activatedDirections = new string[completed+1];
+       
+       
+
 	
 	}
+
+    void Update()
+    {
+        theDirectionGame();
+ 
+    }
+
 
     void newDirectionList()
     {
@@ -74,13 +103,143 @@ public class DirectionGame : MonoBehaviour
  
     }
 
-	// Update is called once per frame
-	void Update () 
-    {
-        if (completed == Directions)
-        {
-            Debug.Log("Voitit Pelin");
-        }
+   void directionCheck(string dName)
+   {
+      
+            var corObj = GameObject.Find(dName);
+            var corD = corObj.GetComponent<direction>();
+
+            if (corD.inside == false)
+            {
+                
+                if (corD.PlayerLooking(10, false))
+                {
+                    if (progress >= completed + 1)
+                    {
+                        Debug.Log("failed. Return to center");
+                        fail = true;
+                    }
+                    if (fail != true)
+                    {
+                        Debug.Log(dName + " true");
+                        corD.inside = true;
+                        Debug.Log("progress: " + progress);
+                        activatedDirections[progress] = dName;
+                        if (corObj.name != "Up")
+                        {
+                            upD.inside = false;
+                        }
+
+                        if (corObj.name != "Down")
+                        {
+                            downD.inside = false;
+                        }
+
+                        if (corObj.name != "Left")
+                        {
+                            leftD.inside = false;
+                        }
+
+                        if (corObj.name != "Right")
+                        {
+                            rightD.inside = false;
+                        }
+                    }
+
+                    
+                    progress++;
+                   
+                    
+                    
+                   
+                }
+            }
+      
+   }
+
+   void returnToCenter()
+   {
+       if (centerD.PlayerLooking(25, false))
+       {
+           if (fail)
+           {
+               progress = 0;
+               activatedDirections = new string[completed + 1];
+               upD.inside = false;
+               downD.inside = false;
+               leftD.inside = false;
+               rightD.inside = false;
+               Debug.Log("Returned to the center.Now try again");
+
+           }
+ 
+       }
+       
+
+
+       if (progress == completed+1)
+           if (centerD.PlayerLooking(25, false))
+           {
+               
+
+               if (isPathCorrect())
+               {
+                   
+                   completed++;
+                   progress = 0;
+                   activatedDirections = new string[completed + 1];
+                   upD.inside = false;
+                   downD.inside = false;
+                   leftD.inside = false;
+                   rightD.inside = false;
+
+               }
+               else
+               {
+                   progress = 0;
+                   activatedDirections = new string[completed + 1];
+                   upD.inside = false;
+                   downD.inside = false;
+                   leftD.inside = false;
+                   rightD.inside = false;
+ 
+               }
+               
+           }
+       
+       }
+   bool isPathCorrect()
+   {
+       for (int j = 0; j < activatedDirections.Length; j++)
+			{
+                if(activatedDirections[j] != directionList[j])
+                {
+                    Debug.Log("failed. Wrong pattern");
+                    return false;
+                }
+                
+			 
+			}
+       Debug.Log("pattern was correct!");
+       return true;
+   }
+
+   void theDirectionGame()
+   {
+       directionCheck("Up");
+       directionCheck("Down");
+       directionCheck("Left");
+       directionCheck("Right");
+       returnToCenter();
+       if (completed == directionList.Length)
+       {
+           Debug.Log("Voitit Pelin");
+       }
+ 
+   }
+ 
+ 
+    
+
 	
-	}
 }
