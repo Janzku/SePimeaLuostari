@@ -17,12 +17,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.S))
         if (spawnTimer >= framesToNextSpawn)
         {
             GameObject _go = Instantiate(EnemyPrefab);
             _go.transform.SetParent(this.gameObject.transform);
-            _go.transform.position = new Vector3(0 , 0, spawnDistance);
+            _go.transform.position = new Vector3(0, 0, spawnDistance);
             randomDirection = Random.Range(-90.0f, 90.0f);
             _go.transform.RotateAround(Vector3.zero, Vector3.up, randomDirection);
             _go.transform.LookAt(new Vector3(0, _go.transform.position.y, 0));
@@ -38,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         {
             FinishTrial();
         }
-    }
+}
 
     void FinishTrial()
     {
