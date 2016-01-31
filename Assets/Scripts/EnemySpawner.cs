@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     private int spawnDistance = 4;
     private float randomDirection;
     private float sceneStartTime;
+    private int framesToNextSpawn = 300;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         // if(Input.GetKeyDown(KeyCode.S))
-        if (spawnTimer >= 300)
+        if (spawnTimer >= framesToNextSpawn)
         {
             GameObject _go = Instantiate(EnemyPrefab);
             _go.transform.SetParent(this.gameObject.transform);
@@ -27,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
             _go.transform.LookAt(new Vector3(0, _go.transform.position.y, 0));
 
             spawnTimer = 0;
+            framesToNextSpawn = framesToNextSpawn - 20;
         }
         else
         {
@@ -40,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     void FinishTrial()
     {
-        // move to next trial
+        Debug.Log("survived.");
+        MySceneManager.NextTrial();
     }
 }

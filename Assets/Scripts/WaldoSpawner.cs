@@ -40,14 +40,16 @@ public class WaldoSpawner : MonoBehaviour
         if (waldoCounter >= 6) // should be 1 more than actual found number
         {
             // move to next trial
-            Debug.Log("Success. Waldos:");
-            Debug.Log(waldoCounter);
+            //Debug.Log("Success. Waldos:");
+            //Debug.Log(waldoCounter);
+            MySceneManager.NextTrial();
         }
         else
         {
             // game over
-            Debug.Log("Failure. Waldos:");
-            Debug.Log(waldoCounter);
+            //Debug.Log("Failure. Waldos:");
+            //Debug.Log(waldoCounter);
+            MySceneManager.LostGameScene();
         }
     }
 }

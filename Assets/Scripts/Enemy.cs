@@ -104,7 +104,7 @@ public class Enemy : BaseBehaviour
 
     void DestroyCheck()
     {
-        if (damage >= 180)
+        if (damage >= 120)
         {
             StartDying();
         }
@@ -184,6 +184,7 @@ public class Enemy : BaseBehaviour
         Debug.Log("Player is dead.");
         Destroy(this.gameObject);
         // go to game over scene
+        MySceneManager.LostGameScene();
     }
 
     void SwapSound(AudioClip sound, float pitch = 1)
