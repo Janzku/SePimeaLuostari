@@ -180,6 +180,14 @@ Prefab:
       propertyPath: hrtfEnabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11492174, guid: c59fe623a8a49974e848290d3eebb1fd, type: 2}
+      propertyPath: sourceLoop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11492174, guid: c59fe623a8a49974e848290d3eebb1fd, type: 2}
+      propertyPath: gainDb
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: c59fe623a8a49974e848290d3eebb1fd, type: 2}
@@ -203,7 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39aa2235bf1b8444bace521978ccecef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundClips:
+  Player: {fileID: 2101719539}
+  IntroClips:
   - {fileID: 8300000, guid: 58eb0f1f20a37484795eb19d5e0449da, type: 3}
   - {fileID: 8300000, guid: 9b8ccb11f37e92547846c67861e21726, type: 3}
   - {fileID: 8300000, guid: e55153da7bdcf0740afb4b399f5b8f14, type: 3}
@@ -215,8 +224,44 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2f4d08abf3a2f4f4d960a8e8cf0c373b, type: 3}
   - {fileID: 8300000, guid: 05998e17e7b9dcf4fa169282eb5073e0, type: 3}
   - {fileID: 8300000, guid: fcd07008dd772cc4aa216d978888d561, type: 3}
+  EarlyActionClips:
   - {fileID: 8300000, guid: e8492ddc788f2a648840a411fef25853, type: 3}
   - {fileID: 8300000, guid: 0962e34d6c8c1b745a5b2b27ae05feaf, type: 3}
+  InteruptionClips:
+  - {fileID: 8300000, guid: 8a1f6de875317f34392d600c6c72bd74, type: 3}
+  - {fileID: 8300000, guid: c2c57f8bdb251504393f405924eddb47, type: 3}
+  - {fileID: 8300000, guid: 6440ae9c7a011ed4e8b9c2eef5ab0040, type: 3}
+  - {fileID: 8300000, guid: d2fa24160cf4b8c45be33fa60998de46, type: 3}
+  - {fileID: 8300000, guid: 6c6464ac7a3519944aa0c9b4aa785200, type: 3}
+  - {fileID: 8300000, guid: a9cafb661c1be1947bf9d3ff72d30ee8, type: 3}
+  - {fileID: 8300000, guid: a2b3596f582262348a749dfc0d991b69, type: 3}
+  - {fileID: 8300000, guid: ac07ac8c7ee1d694cb1bc3760bcb2cff, type: 3}
+  - {fileID: 8300000, guid: e7af753fc38dca54ea8087513ccb2243, type: 3}
+  - {fileID: 8300000, guid: f22ec0439260d2e49a9c33a2ba084bc7, type: 3}
+  - {fileID: 8300000, guid: d162b1213a3256c418902d3b5a4e47ff, type: 3}
+  - {fileID: 8300000, guid: ed61045c58f2330489e18ef9fb3987bc, type: 3}
+  AskToListenClips:
+  - {fileID: 8300000, guid: 8a2227ca336c9774f8c62725b65efa48, type: 3}
+  - {fileID: 8300000, guid: 4d0c83ff62310eb4c9e0fc210475e12b, type: 3}
+  - {fileID: 8300000, guid: b74580c96a525434cbb7aa990f5c6a9a, type: 3}
+  - {fileID: 8300000, guid: 1947fbcd21f832c49b3d0806ef27b51e, type: 3}
+  - {fileID: 8300000, guid: a2328ba32369f4f48a3c6c93e1fc5e5a, type: 3}
+  - {fileID: 8300000, guid: cf8da00b6ecfb8f4abd93a2c5c6d994b, type: 3}
+  - {fileID: 8300000, guid: c11016cd88cd5a84ebceb65d91aa7f21, type: 3}
+  - {fileID: 8300000, guid: ad8567c19fc4c8843b88155145b878e1, type: 3}
+  - {fileID: 8300000, guid: 06fe5f9941dd9054f8a7af9a0393d703, type: 3}
+  - {fileID: 8300000, guid: a3b0517f63c7ffa479d1b13331f69e03, type: 3}
+  - {fileID: 8300000, guid: 1a785cb8fbd77dc45a583a45e0b08cbe, type: 3}
+  - {fileID: 8300000, guid: dae7a09d01fc8c7449611aebcfce5385, type: 3}
+  - {fileID: 8300000, guid: 76139da17aebf3d4da1957f06637332d, type: 3}
+  - {fileID: 8300000, guid: 54e69b129b4265544a095dfaaa509f15, type: 3}
+  ContinueClips:
+  - {fileID: 8300000, guid: 64f2ef79219c8164d97ec84f53c8df95, type: 3}
+  - {fileID: 8300000, guid: ddd3c9c8ebad57d4d8772b908d297f6d, type: 3}
+  - {fileID: 8300000, guid: 1b6d2fe2e988dbe49ad054102ece4974, type: 3}
+  - {fileID: 8300000, guid: 20d4e793c438d9f4a97ab82524e87155, type: 3}
+  - {fileID: 8300000, guid: e1efb4a69c4a2a144b13a1d650c33d4d, type: 3}
+  Credits: {fileID: 0}
 --- !u!1 &755645996
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,3 +431,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d5cc856062f3fc40b748e64ef180d56, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2101719539 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 136206, guid: 4d5cc856062f3fc40b748e64ef180d56, type: 2}
+  m_PrefabInternal: {fileID: 1486988218}

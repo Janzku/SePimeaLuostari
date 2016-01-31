@@ -26,6 +26,7 @@ public class HeadMonk : BaseBehaviour
 
     bool m_playerActionTriggered = false;
     bool m_playCredits = false;
+    bool m_resumePreach = false;
 
     // Use this for initialization
     void Start ()
@@ -45,6 +46,11 @@ public class HeadMonk : BaseBehaviour
             PlayCredits();
             return;
         }
+        if (m_playerActionTriggered)
+        {
+            LoadSceneAfterClip();
+            return;
+        }
 
         PlayerAction();
 
@@ -56,13 +62,13 @@ public class HeadMonk : BaseBehaviour
         }
         else
         {
+            if (m_introIsOver == false)
+                m_resumePreach = true;
+
             HeadPriestSpeeches();
         }
 
-        if(m_playerActionTriggered)
-        {
-            LoadSceneAfterClip();
-        }
+        
 	}
 
     bool PreachToPlayer()
@@ -114,12 +120,8 @@ public class HeadMonk : BaseBehaviour
                     CAS.clip = AskToListenClips[Random.Range(0, AskToListenClips.Count)];
                     CAS.Play();
                     break;
-                case 2:
-                    CAS.clip = ContinueClips[Random.Range(0, ContinueClips.Count)];
-                    CAS.Play();
-                    break;
                 default: // Continue to ask player to follow.
-                    CAS.clip = ContinueClips[Random.Range(0, ContinueClips.Count)];
+                    CAS.clip = AskToListenClips[Random.Range(0, AskToListenClips.Count)];
                     CAS.Play();
                     break;
             }
@@ -130,10 +132,23 @@ public class HeadMonk : BaseBehaviour
 
     void NextIntroClip()
     {
-        if(CAS.isPlaying == false)
+
+        if (CAS.isPlaying == false)
         {
+            if(m_resumePreach)
+            {
+                CAS.clip = ContinueClips[Random.Range(0, ContinueClips.Count)];
+                CAS.Play();
+
+                m_resumePreach = false;
+                m_curClipIndex--;
+                _helper = 0;
+                return;
+            }
+
+
             m_curClipIndex++;
-            if(m_curClipIndex >= IntroClips.Count)
+            if (m_curClipIndex >= IntroClips.Count)
             {
                 //Debug.Log("Played all. Wait for player interaction");
                 m_introIsOver = true;
@@ -162,10 +177,11 @@ public class HeadMonk : BaseBehaviour
         }
         else if(Player.transform.rotation.x <= -0.4f)
         {
-            m_playerActionTriggered = true;
+            m_playCredits = true;
             Debug.Log("Praise the heavens");
             if(m_introIsOver == false)
             {
+                m_playCredits = true;
                 CAS.Stop();
                 CAS.clip = EarlyActionClips[1];
                 CAS.Play();
@@ -188,7 +204,7 @@ public class HeadMonk : BaseBehaviour
     {
         if(CAS.isPlaying == false)
         {
-            // load trial scene.
+            Destroy(this.gameObject); // Load trial scene here instead.
         }
     }
 
