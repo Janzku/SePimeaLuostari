@@ -37,13 +37,17 @@ public class WaldoSpawner : MonoBehaviour
 
     void FinishTrial()
     {
-        if (waldoCounter >= 7)
+        if (waldoCounter >= 6) // should be 1 more than actual found number
         {
             // move to next trial
+            Debug.Log("Success. Waldos:");
+            Debug.Log(waldoCounter);
         }
         else
         {
             // game over
+            Debug.Log("Failure. Waldos:");
+            Debug.Log(waldoCounter);
         }
     }
 }

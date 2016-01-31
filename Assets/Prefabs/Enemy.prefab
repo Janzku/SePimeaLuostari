@@ -106,7 +106,7 @@ MonoBehaviour:
   occlusionEnabled: 0
   playOnAwake: 1
   rolloffMode: 0
-  sourceClip: {fileID: 8300000, guid: e2f64cc3efbcce24cbdc818bb8b73752, type: 3}
+  sourceClip: {fileID: 8300000, guid: 6c80ccffc06be5a498691a6b6c496f6b, type: 3}
   sourceLoop: 1
   sourceMute: 0
   sourcePitch: 1
@@ -172,7 +172,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: sourceClip
       value: 
-      objectReference: {fileID: 8300000, guid: e2f64cc3efbcce24cbdc818bb8b73752, type: 3}
+      objectReference: {fileID: 8300000, guid: 6c80ccffc06be5a498691a6b6c496f6b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 159778}

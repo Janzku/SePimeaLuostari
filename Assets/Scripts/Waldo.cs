@@ -69,7 +69,7 @@ public class Waldo : BaseBehaviour
     void FoundWaldo()
     {
         found = true;
-        SwapSound(FoundSound);
+        SwapSound(FoundSound, 1.2f);
         AS.loop = false;
     }
 
@@ -83,12 +83,12 @@ public class Waldo : BaseBehaviour
 
     }
 
-    void SwapSound(AudioClip sound)
+    void SwapSound(AudioClip sound, float pitch = 1.0f)
     {
         AS.Stop();
         AS.clip = sound;
         AS.volume = 1;
-        AS.pitch = 1;
+        AS.pitch = pitch;
         AS.Play();
     }
 }

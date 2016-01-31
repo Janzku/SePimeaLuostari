@@ -106,7 +106,7 @@ MonoBehaviour:
   occlusionEnabled: 0
   playOnAwake: 1
   rolloffMode: 0
-  sourceClip: {fileID: 8300000, guid: 580c1230165b44be4922e61f9d4e2613, type: 3}
+  sourceClip: {fileID: 8300000, guid: f4dd8db3f5c21154883e6b6a2ef2a8b5, type: 3}
   sourceLoop: 1
   sourceMute: 0
   sourcePitch: 1
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4dab9df8728e041a9df555d8d5d0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoundSound: {fileID: 8300000, guid: f89714c1037af384abee99ac988f57d5, type: 3}
+  FoundSound: {fileID: 8300000, guid: fd9586b4a11b2924198643140838b6e5, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -136,7 +136,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: FoundSound
       value: 
-      objectReference: {fileID: 8300000, guid: f89714c1037af384abee99ac988f57d5, type: 3}
+      objectReference: {fileID: 8300000, guid: fd9586b4a11b2924198643140838b6e5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sourceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4dd8db3f5c21154883e6b6a2ef2a8b5, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165684}
