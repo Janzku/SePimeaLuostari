@@ -205,8 +205,8 @@ public class HeadMonk : BaseBehaviour
     {
         if(CAS.isPlaying == false)
         {
-            
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            MySceneManager.NextTrial();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             Destroy(this.gameObject); // Load trial scene here instead.
         }
     }
