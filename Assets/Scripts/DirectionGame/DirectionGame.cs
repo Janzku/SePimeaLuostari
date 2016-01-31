@@ -108,14 +108,30 @@ public class DirectionGame : MonoBehaviour
       
             var corObj = GameObject.Find(dName);
             var corD = corObj.GetComponent<direction>();
+            if (corD.PlayerLooking(25, false))
+            {
+                if (corObj.GetComponent<CardboardAudioSource>().isPlaying == false)
+                {
+                    corObj.GetComponent<CardboardAudioSource>().Play();
+                }
+                
+            }
+            else
+            {
+                if (corObj.GetComponent<CardboardAudioSource>().isPlaying)
+                {
+                    corObj.GetComponent<CardboardAudioSource>().Stop();
+                }
+            }
 
             if (corD.inside == false)
             {
-                
-                if (corD.PlayerLooking(10, false))
+
+                if (corD.PlayerLooking(25, false))
                 {
                     if (progress >= completed + 1)
                     {
+                        MySceneManager.LostGameScene();
                         Debug.Log("failed. Return to center");
                         fail = true;
                     }
@@ -146,13 +162,11 @@ public class DirectionGame : MonoBehaviour
                         }
                     }
 
-                    
+
                     progress++;
-                   
-                    
-                    
-                   
+
                 }
+                
             }
       
    }
@@ -170,6 +184,7 @@ public class DirectionGame : MonoBehaviour
                leftD.inside = false;
                rightD.inside = false;
                Debug.Log("Returned to the center.Now try again");
+               MySceneManager.LostGameScene();
 
            }
  
@@ -233,7 +248,7 @@ public class DirectionGame : MonoBehaviour
        returnToCenter();
        if (completed == directionList.Length)
        {
-           Debug.Log("Voitit Pelin");
+           MySceneManager.NextTrial();
        }
  
    }
