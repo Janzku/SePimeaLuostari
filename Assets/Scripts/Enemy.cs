@@ -10,8 +10,10 @@ public class Enemy : BaseBehaviour
     private bool attacking = false;
     private bool stunned = false;
     private int stunPitchDirection = 1;
-    private float lookingMargin = 30;
-    private float preciseLookingMargin = 10;
+    private float lookingMargin = 40;
+    private float preciseLookingMargin = 15;
+    private float forwardSpeed = 0.04f;
+    private float backwardSpeed = 0.03f;
 
     private CardboardAudioSource AS;
 
@@ -109,7 +111,7 @@ public class Enemy : BaseBehaviour
     {
         if (lookedAt)
         {
-            transform.Translate(Vector3.back * Time.deltaTime);
+            transform.Translate(Vector3.back * backwardSpeed);
         }
         else if (stunned)
         {
@@ -117,7 +119,7 @@ public class Enemy : BaseBehaviour
         }
         else
         {
-            transform.Translate(Vector3.forward * Time.deltaTime);
+            transform.Translate(Vector3.forward * forwardSpeed); // was time.deltaTime before, which is ~0.017
         }
     }
 

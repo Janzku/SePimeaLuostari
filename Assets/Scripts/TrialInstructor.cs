@@ -42,7 +42,6 @@ public class TrialInstructor : MonoBehaviour {
 	}
     void SwapSound(AudioClip sound, float pitch = 1.0f)
     {
-        Debug.Log("asd");
         AS.Stop();
         AS.clip = sound;
         AS.volume = 1;

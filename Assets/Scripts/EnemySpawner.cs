@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab = null;
     private int spawnTimer = 240;
-    private float spawnDistance = 4.8f;
+    private float spawnDistance = 9.0f;
     private float randomDirection;
     private float sceneStartTime;
     private int framesToNextSpawn = 300;
