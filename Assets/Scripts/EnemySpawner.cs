@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab = null;
     private int spawnTimer = 240;
-    private int spawnDistance = 4;
+    private float spawnDistance = 4.8f;
     private float randomDirection;
     private float sceneStartTime;
     private int framesToNextSpawn = 300;
@@ -30,13 +30,13 @@ public class EnemySpawner : MonoBehaviour
             _go.transform.LookAt(new Vector3(0, _go.transform.position.y, 0));
 
             spawnTimer = 0;
-            framesToNextSpawn = framesToNextSpawn - 20;
+            framesToNextSpawn = framesToNextSpawn - 15;
         }
         else
         {
             spawnTimer++;
         }
-        if ((sceneStartTime + 30f) <= Time.realtimeSinceStartup)
+        if ((sceneStartTime + 40f) <= Time.realtimeSinceStartup)
         {
             FinishTrial();
         }

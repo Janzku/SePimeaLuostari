@@ -291,6 +291,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &178924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 428338}
+  - 114: {fileID: 11449510}
+  m_Layer: 0
+  m_Name: CardboardAudioRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &180432
 GameObject:
   m_ObjectHideFlags: 1
@@ -421,7 +437,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 444636}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &425216
 Transform:
   m_ObjectHideFlags: 1
@@ -434,6 +450,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 461158}
   m_RootOrder: 1
+--- !u!4 &428338
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -2}
+  m_LocalScale: {x: 10, y: 4, z: 14}
+  m_Children: []
+  m_Father: {fileID: 444636}
+  m_RootOrder: 1
 --- !u!4 &444636
 Transform:
   m_ObjectHideFlags: 1
@@ -445,6 +473,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22432694}
+  - {fileID: 428338}
   - {fileID: 495450}
   - {fileID: 480616}
   - {fileID: 22429362}
@@ -527,7 +556,7 @@ Transform:
   - {fileID: 445378}
   - {fileID: 461158}
   m_Father: {fileID: 444636}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &484530
 Transform:
   m_ObjectHideFlags: 1
@@ -552,7 +581,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 444636}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &499258
 Transform:
   m_ObjectHideFlags: 1
@@ -1090,6 +1119,28 @@ MonoBehaviour:
   globalGainDb: 0
   worldScale: 1
   quality: 1
+--- !u!114 &11449510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2722c2401e34d51bf5b473ef7aeefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWall: 21
+  rightWall: 21
+  floor: 6
+  ceiling: 20
+  backWall: 21
+  frontWall: 4
+  reflectivity: 1
+  reverbGainDb: 0
+  reverbBrightness: 0
+  reverbTime: 1
+  size: {x: 1, y: 1, z: 1}
 --- !u!114 &11452840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1470,7 +1521,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 444636}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.00000047683716, y: -0.00000071525574}
